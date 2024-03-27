@@ -19,6 +19,8 @@ requirements:
     - python
     - pip
     - poetry
+    - setuptools
+    - wheel
   run:
     - python
     - six
