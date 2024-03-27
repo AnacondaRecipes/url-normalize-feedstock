@@ -10,17 +10,17 @@ source:
   sha256: d23d3a070ac52a67b83a1c59a0e68f8608d1cd538783b401bc9de2c0fac999b2
 
 build:
-  noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True  # [py<36]
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
     - poetry
   run:
-    - python >=3.6
+    - python
     - six
 
 test:
