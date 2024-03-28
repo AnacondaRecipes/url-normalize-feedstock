@@ -13,12 +13,17 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: True  # [py<36]
+  patches:
+    - patches/0001-change-build-backend-to-poetry-core.patch
 
 requirements:
+  build:
+    - patch       # [not win]
+    - m2-patch    # [win]
   host:
     - python
     - pip
-    - poetry
+    - poetry-core
     - setuptools
     - wheel
   run:
