@@ -8,19 +8,24 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: d23d3a070ac52a67b83a1c59a0e68f8608d1cd538783b401bc9de2c0fac999b2
+  patches:
+    - patches/0001-change-build-backend-to-poetry-core.patch
 
 build:
-  noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True  # [py<36]
 
 requirements:
+  build:
+    - patch       # [not win]
+    - m2-patch    # [win]
   host:
-    - python >=3.6
+    - python
     - pip
-    - poetry
+    - poetry-core
   run:
-    - python >=3.6
+    - python
     - six
 
 test:
