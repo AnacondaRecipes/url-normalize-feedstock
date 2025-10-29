@@ -8,8 +8,6 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
   sha256: 74a540a3b6eba1d95bdc610c24f2c0141639f3ba903501e61a52a8730247ff37
-  #patches:
-  #  - patches/0001-change-build-backend-to-poetry-core.patch
 
 build:
   number: 0
